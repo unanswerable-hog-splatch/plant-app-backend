@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Require plantSchema when complete
+const plantSchema = require('./Plant')
 
 // Planter is basically user
 const planterSchema = new Schema(
@@ -9,7 +10,7 @@ const planterSchema = new Schema(
         username: {
             type: String,
             required: true,
-            unique true,
+            unique: true,
         },
         email: {
             type: String,
@@ -21,7 +22,7 @@ const planterSchema = new Schema(
             type: String,
             required: true,
         },
-        plantList: [plantSchema]
+        plantList: [plantSchema],
     },
     {
         toJSON: {
