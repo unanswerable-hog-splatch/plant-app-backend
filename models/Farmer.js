@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Require plantSchema when complete
-const plantSchema = require('./Plant')
+const Plant = require('./Plant')
 
 // Planter is basically user
 const farmerSchema = new Schema(
@@ -22,7 +22,12 @@ const farmerSchema = new Schema(
             type: String,
             required: true,
         },
-        plantList: [plantSchema],
+        plants: [
+            {
+              type: Schema.Types.ObjectId,
+              ref: 'Plant',
+            },
+          ],
     },
     {
         toJSON: {
