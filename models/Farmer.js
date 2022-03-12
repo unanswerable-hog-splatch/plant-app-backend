@@ -5,9 +5,9 @@ const bcrypt = require('bcrypt');
 const plantSchema = require('./Plant')
 
 // Planter is basically user
-const planterSchema = new Schema(
+const farmerSchema = new Schema(
     {
-        username: {
+        name: {
             type: String,
             required: true,
             unique: true,
@@ -32,25 +32,25 @@ const planterSchema = new Schema(
 );
 
 // hash user password
-planterSchema.pre('save', async function (next) {
+farmerSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(this.password, saltRounds);
     };
 
-    next;
+    next();
 });
 
 // compare and validate password to log in
-planterSchema.methods.isCorrectPassword = async function (password) {
+farmerSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
 // plantCount virtual
-planterSchema.virtual('plantCount'). get(function() {
+farmerSchema.virtual('plantCount'). get(function() {
     return this.plantList.length;
 });
 
-const Planter = model("Planter", planterSchema);
+const Farmer = model("Farmer", farmerSchema);
 
-module.exports = Planter;
+module.exports = Farmer;
