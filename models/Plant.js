@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 // Require taskSchema to nest in Plant schema
 const taskSchema = require('./Task')
 
