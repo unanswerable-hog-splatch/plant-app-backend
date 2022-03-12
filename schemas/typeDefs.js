@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-type Farmer {
+type Gardener {
     _id: ID
     name: String!
     email: String!
