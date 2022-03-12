@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Require plantSchema when complete
-const Plant = require('./Plant')
 
 // Planter is basically user
 const farmerSchema = new Schema(

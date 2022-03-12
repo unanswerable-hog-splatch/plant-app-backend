@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 // Require taskSchema to nest in Plant schema
-const taskSchema = require('./Task')
 
 // Plant is only a schema. To be nested in Planters. Task schema to be nested in Plant schema.
 const plantSchema = new Schema({
@@ -18,17 +17,17 @@ const plantSchema = new Schema({
     dateAdded: {
         type: Date,
     },
-    watered: {
-        type: Boolean,
-        required: true,
-        default: true,
-    },
     fertilized: {
         type: Boolean,
         required: true,
         default: false,
     },
-    tasks: [taskSchema],
+    tasks: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Task',
+        },
+      ],
 });
 
 const Plant = model("Plant", plantSchema);
