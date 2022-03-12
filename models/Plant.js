@@ -11,7 +11,7 @@ const plantSchema = new Schema({
     nickname: {
         type: String,
     },
-    birthDate: {
+    dateAdded: {
         type: Date,
     },
     tasks: [taskSchema],
