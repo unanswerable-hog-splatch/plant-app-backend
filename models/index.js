@@ -1,3 +1,5 @@
-const Farmer = require('./Farmer')
+const Gardener = require('./Gardener')
+const Plant = require('./Plant')
+const Task = require('./Task')
 
-module.exports = { Farmer };
+module.exports = { Gardener, Plant, Task };
