@@ -1,5 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Gardener, Plant, Task } = require('../models')
+const { signToken } = require('../utils/auth');
+
 
 const resolvers = {
   Query: {

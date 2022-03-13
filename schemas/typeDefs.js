@@ -42,8 +42,17 @@ type Gardener {
   type Mutation {
     addGardener(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    adoptPlant(thoughtText: String!): Plant
+    adoptPlant(plant: PlantInput!): Gardener
     killPlant(plantId: ID!): Plant
+  }
+
+  input PlantInput {
+    plantType: String! 
+    category: String
+    nickname: String!
+    dateAdded: Int!
+    fertilized: Boolean
+    tasks: [Task]!
   }
 `;
 
