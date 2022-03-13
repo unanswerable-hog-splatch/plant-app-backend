@@ -14,7 +14,7 @@ type Gardener {
     plantType: String!
     category: String!
     nickname: String
-    dateAdded: Date!
+    dateAdded: Int!
     fertilized: Boolean
     tasks: [Task]!
   }
@@ -22,8 +22,28 @@ type Gardener {
   type Task {
     _id: ID
     task: String!
-    frequency: Number!
+    frequency: Int!
     taskStartDate: String!
+  }
+
+  type Auth {
+    token: ID!
+    gardener: Gardener
+  }
+
+  type Query {
+    gardeners: [Gardener]
+    gardener(name: String!): Gardener
+    plants(name: String): [Plant]
+    plant(plantId: ID!): Plant
+    me: Gardener
+  }
+
+  type Mutation {
+    addGardener(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    adoptPlant(thoughtText: String!): Plant
+    killPlant(plantId: ID!): Plant
   }
 `;
 
