@@ -5,29 +5,42 @@ const { Schema, model } = require('mongoose');
 const plantSchema = new Schema({
     plantType: {
         type: String,
-        required: true,
+        // required: true,
     },
     category: {
         type: String,
-        required: true
+        // required: true
     },
     nickname: {
         type: String,
     },
     dateAdded: {
         type: Date,
+        // required: true
+    },
+    watered: {
+        type: Boolean,
+        // required: true,
+        default: true,
     },
     fertilized: {
         type: Boolean,
-        required: true,
         default: false,
     },
-    tasks: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Task',
-        },
-      ],
+    waterFrequency: {
+        type: Number,
+        // required: true,
+    },
+    fertilizeFrequency: {
+        type: Number,
+    },
+    lastWaterDate: {
+        type: Date,
+        // required: true,
+    },
+    lastFertilizeDate: {
+        type: Date,
+    }
 });
 
 const Plant = model("Plant", plantSchema);

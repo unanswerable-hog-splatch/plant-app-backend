@@ -2,28 +2,56 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 type Gardener {
-    _id: ID
     name: String!
     email: String!
     password: String!
-    plants: [Plant]!
+    plants: [Plant]
   }
 
   type Plant {
-    _id: ID
-    plantType: String!
-    category: String!
+    plantType: String
+    category: String
     nickname: String
-    dateAdded: Date!
+    dateAdded: Int
+    watered: Boolean
     fertilized: Boolean
-    tasks: [Task]!
+    waterFrequency: Int
+    fertilizeFrequency: Int
+    lastWaterDate: Int
+    lastFertilizeDate: Int
   }
 
-  type Task {
-    _id: ID
-    task: String!
-    frequency: Number!
-    taskStartDate: String!
+  type Auth {
+    token: ID!
+    gardener: Gardener
+  }
+
+  type Query {
+    gardeners: [Gardener]
+    gardener(name: String!): Gardener
+    plants(name: String): [Plant]
+    plant(plantId: ID!): Plant
+    me: Gardener
+  }
+
+  type Mutation {
+    addGardener(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    adoptPlant(plant: plantInput): Plant
+    killPlant(_id: ID!): Plant
+  }
+
+  input plantInput {
+    plantType: String
+    category: String
+    nickname: String
+    dateAdded: Int
+    watered: Boolean
+    fertilized: Boolean
+    waterFrequency: Int
+    fertilizeFrequency: Int
+    lastWaterDate: Int
+    lastFertilizeDate: Int
   }
 `;
 
