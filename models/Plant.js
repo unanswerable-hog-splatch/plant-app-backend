@@ -27,12 +27,20 @@ const plantSchema = new Schema({
         required: true,
         default: true,
     },
-    tasks: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Task',
-        },
-      ],
+    frequency: {
+        type: Number,
+        required: true,
+    },
+    taskStartDate: {
+        type: Date,
+        required: true,
+    },
+    // tasks: [
+    //     {
+    //       type: Schema.Types.ObjectId,
+    //       ref: 'Task',
+    //     },
+    //   ],
 });
 
 const Plant = model("Plant", plantSchema);
