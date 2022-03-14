@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Gardener, Plant, Task } = require('../models')
+const { Gardener, Plant } = require('../models')
 const { signToken } = require('../utils/auth');
 
 
@@ -54,22 +54,26 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, args, context) => {
-      if (context.gardener) {
+    adoptPlant: async (parent, { plantType, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate } ) => {
+      if (true) {
         const plant = await Plant.create({
-          // plantType,
-          // category,
-          // nickname,
-          // dateAdded,
-          // fertilized,
-          // tasks
-          args
+          plantType,
+          category,
+          nickname,
+          dateAdded,
+          watered,
+          fertilized,
+          waterFrequency,
+          fertilizeFrequency,
+          lastWaterDate,
+          lastFertilizeDate,
+          // args
         });
 
-        await Gardener.findOneAndUpdate(
-          { _id: context.gardener._id },
-          { $addToSet: { plants: plant._id } }
-        );
+        // await Gardener.findOneAndUpdate(
+        //   { _id: context.gardener._id },
+        //   { $addToSet: { plants: plant._id } }
+        // );
 
         return plant;
       }
