@@ -24,7 +24,6 @@ const plantSchema = new Schema({
     },
     fertilized: {
         type: Boolean,
-        required: true,
         default: false,
     },
     waterFrequency: {
