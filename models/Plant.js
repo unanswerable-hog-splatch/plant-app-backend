@@ -17,21 +17,25 @@ const plantSchema = new Schema({
     dateAdded: {
         type: Date,
     },
-    fertilized: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
     watered: {
         type: Boolean,
         required: true,
         default: true,
     },
+    fertilized: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
     frequency: {
         type: Number,
         required: true,
     },
-    taskStartDate: {
+    lastWaterDate: {
+        type: Date,
+        required: true,
+    },
+    lastFertilizeDate: {
         type: Date,
         required: true,
     },
