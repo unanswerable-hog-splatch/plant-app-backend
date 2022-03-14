@@ -15,8 +15,13 @@ type Gardener {
     category: String!
     nickname: String
     dateAdded: Int!
+    watered: Boolean!
     fertilized: Boolean
-    tasks: [Task]!
+    waterFrequency: Int!
+    fertilizeFrequency: Int
+    lastWaterDate: Int!
+    lastFertilizeDate: Int
+    # tasks: [Task]!
   }
 
   type Task {
@@ -47,11 +52,16 @@ type Gardener {
   }
 
   input PlantInput {
-    plantType: String! 
-    category: String
-    nickname: String!
+    plantType: String!
+    category: String!
+    nickname: String
     dateAdded: Int!
+    watered: Boolean!
     fertilized: Boolean
+    waterFrequency: Int!
+    fertilizeFrequency: Int
+    lastWaterDate: Int!
+    lastFertilizeDate: Int
     # tasks: Task
   }
 `;
