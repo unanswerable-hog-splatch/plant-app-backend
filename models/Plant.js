@@ -27,9 +27,12 @@ const plantSchema = new Schema({
         required: true,
         default: false,
     },
-    frequency: {
+    waterFrequency: {
         type: Number,
         required: true,
+    },
+    fertilizeFrequency: {
+        type: Number,
     },
     lastWaterDate: {
         type: Date,
@@ -37,7 +40,6 @@ const plantSchema = new Schema({
     },
     lastFertilizeDate: {
         type: Date,
-        required: true,
     },
     // tasks: [
     //     {
