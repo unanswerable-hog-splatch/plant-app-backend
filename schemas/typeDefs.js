@@ -52,7 +52,7 @@ type Gardener {
     nickname: String!
     dateAdded: Int!
     fertilized: Boolean
-    tasks: [Task]!
+    # tasks: Task
   }
 `;
 

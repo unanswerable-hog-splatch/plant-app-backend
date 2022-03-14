@@ -22,6 +22,11 @@ const plantSchema = new Schema({
         required: true,
         default: false,
     },
+    watered: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
     tasks: [
         {
           type: Schema.Types.ObjectId,

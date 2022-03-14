@@ -16,7 +16,7 @@ const resolvers = {
       return Plant.find(params).sort({ createdAt: -1 });
     },
     plant: async (parent, { plantId }) => {
-      return Thought.findOne({ _id: plantId });
+      return Plant.findOne({ _id: plantId });
     },
     // tasks: async (parent, { nickname }) => {
     //   const params = nickname ? { nickname } : {};
