@@ -18,10 +18,6 @@ const resolvers = {
     plant: async (parent, { plantId }) => {
       return Plant.findOne({ _id: plantId });
     },
-    // tasks: async (parent, { nickname }) => {
-    //   const params = nickname ? { nickname } : {};
-    //   return Task.find(params).sort({ createdAt: -1 });
-    // },
     me: async (parent, args, context) => {
       if (context.user) {
         return Gardener.findOne({ _id: context.gardener._id }).populate('plants');
@@ -70,10 +66,10 @@ const resolvers = {
           // args
         });
 
-        // await Gardener.findOneAndUpdate(
-        //   { _id: context.gardener._id },
-        //   { $addToSet: { plants: plant._id } }
-        // );
+        await Gardener.findOneAndUpdate(
+          { _id: context.gardener._id },
+          { $addToSet: { plants: plant._id } }
+        );
 
         return plant;
       }
