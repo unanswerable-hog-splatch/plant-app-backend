@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 type Gardener {
+    _id: ID!
     name: String!
     email: String!
     password: String!
@@ -9,6 +10,7 @@ type Gardener {
   }
 
   type Plant {
+    _id: ID
     plantType: String
     category: String
     nickname: String
@@ -37,22 +39,25 @@ type Gardener {
   type Mutation {
     addGardener(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    adoptPlant(plant: plantInput): Plant
+    adoptPlant( gardenerId: ID, plantType: String!, category: String!, nickname: String, dateAdded: Int!, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Gardener
     killPlant(_id: ID!): Plant
   }
 
-  input plantInput {
-    plantType: String
-    category: String
-    nickname: String
-    dateAdded: Int
-    watered: Boolean
-    fertilized: Boolean
-    waterFrequency: Int
-    fertilizeFrequency: Int
-    lastWaterDate: Int
-    lastFertilizeDate: Int
-  }
 `;
+
+
+// input plantInput {
+//   gardenerId: ID
+//   plantType: String
+//   category: String
+//   nickname: String
+//   dateAdded: Int
+//   watered: Boolean
+//   fertilized: Boolean
+//   waterFrequency: Int
+//   fertilizeFrequency: Int
+//   lastWaterDate: Int
+//   lastFertilizeDate: Int
+// }
 
 module.exports = typeDefs;

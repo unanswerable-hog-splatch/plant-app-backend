@@ -50,8 +50,8 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { plantType, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate } ) => {
-      if (true) {
+    adoptPlant: async (parent, { plantType, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context ) => {
+      if (context.gardener) {
         const plant = await Plant.create({
           plantType,
           category,
@@ -66,12 +66,13 @@ const resolvers = {
           // args
         });
 
-        await Gardener.findOneAndUpdate(
+        return await Gardener.findOneAndUpdate(
+
           { _id: context.gardener._id },
+          // { _id: gardenerId },
           { $addToSet: { plants: plant._id } }
         );
 
-        return plant;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

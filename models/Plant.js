@@ -5,22 +5,22 @@ const { Schema, model } = require('mongoose');
 const plantSchema = new Schema({
     plantType: {
         type: String,
-        // required: true,
+        required: true,
     },
     category: {
         type: String,
-        // required: true
+        required: true
     },
     nickname: {
         type: String,
     },
     dateAdded: {
         type: Date,
-        // required: true
+        required: true
     },
     watered: {
         type: Boolean,
-        // required: true,
+        required: true,
         default: true,
     },
     fertilized: {
@@ -29,14 +29,14 @@ const plantSchema = new Schema({
     },
     waterFrequency: {
         type: Number,
-        // required: true,
+        required: true,
     },
     fertilizeFrequency: {
         type: Number,
     },
     lastWaterDate: {
         type: Date,
-        // required: true,
+        required: true,
     },
     lastFertilizeDate: {
         type: Date,
