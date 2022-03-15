@@ -12,6 +12,7 @@ type Gardener {
   type Plant {
     _id: ID
     plantType: String
+    plantIcon: String
     category: String
     nickname: String
     dateAdded: Int
@@ -39,7 +40,7 @@ type Gardener {
   type Mutation {
     addGardener(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    adoptPlant( gardenerId: ID, plantType: String!, category: String!, nickname: String, dateAdded: Int!, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Gardener
+    adoptPlant( plantType: String!, plantIcon: String!, category: String!, nickname: String, dateAdded: Int!, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Gardener
     killPlant(_id: ID!): Plant
   }
 
