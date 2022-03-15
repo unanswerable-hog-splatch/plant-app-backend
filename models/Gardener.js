@@ -51,7 +51,7 @@ gardenerSchema.methods.isCorrectPassword = async function (password) {
 
 // plantCount virtual
 gardenerSchema.virtual('plantCount').get(function() {
-    return this.plantList.length;
+    return this.plants.length;
 });
 
 const Gardener = model("Gardener", gardenerSchema);
