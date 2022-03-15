@@ -17,7 +17,7 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-process.env.NODE_ENV === 'production' ? app.use(express.static(path.join(__, '../client/build'))) : null
+process.env.NODE_ENV === 'production' ? app.use(express.static(path.join(__dirname, '../client/build'))) : null
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
