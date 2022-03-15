@@ -50,10 +50,11 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { plantType, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context ) => {
+    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context ) => {
       if (context.gardener) {
         const plant = await Plant.create({
           plantType,
+          plantIcon,
           category,
           nickname,
           dateAdded,

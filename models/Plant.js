@@ -7,6 +7,11 @@ const plantSchema = new Schema({
         type: String,
         required: true,
     },
+    plantIcon: {
+        type: String,
+        required: true,
+        default: 'cactus',
+    },
     category: {
         type: String,
         required: true

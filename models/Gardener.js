@@ -50,7 +50,7 @@ gardenerSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // plantCount virtual
-gardenerSchema.virtual('plantCount'). get(function() {
+gardenerSchema.virtual('plantCount').get(function() {
     return this.plantList.length;
 });
 
