@@ -50,8 +50,8 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context ) => {
-      if (context.gardener) {
+    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate } ) => {
+      if (true) {
         const plant = await Plant.create({
           plantType,
           plantIcon,
@@ -77,8 +77,8 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    killPlant: async (parent, { plantId }, context) => {
-      if (context.gardener) {
+    killPlant: async (parent, { plantId }) => {
+      if (true) {
         const plant = await Plant.findOneAndDelete({
           _id: plantId,
         });
@@ -90,10 +90,10 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateFrequency: async (parent, { plantId, waterFrequency }, context) => {
-      if (context.gardener) {
+    updateFrequency: async (parent, { _id, waterFrequency }) => {
+      if (true) {
         const plant = await Plant.findOneAndUpdate(
-          { _id: plantId},
+          { _id: _id},
           { $set: { waterFrequency: waterFrequency }},
           {
             new: true,
@@ -108,5 +108,7 @@ const resolvers = {
     
   }
 
+// if (true) should be if (context.gardener)
+// context should be added to args.
 
 module.exports = resolvers;
