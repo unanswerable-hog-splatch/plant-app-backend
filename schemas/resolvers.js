@@ -19,7 +19,7 @@ const resolvers = {
       return Plant.findOne({ _id: plantId });
     },
     me: async (parent, args, context) => {
-      if (context.user) {
+      if (context.gardener) {
         return Gardener.findOne({ _id: context.gardener._id }).populate('plants');
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -77,21 +77,21 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    killPlant: async (parent, { plantId }, context) => {
+    killPlant: async (parent, { _id }, context) => {
       if (context.gardener) {
         const plant = await Plant.findOneAndDelete({
-          _id: plantId,
+          _id: _id,
         });
         await Gardener.findOneAndUpdate(
           { _id: context.gardener._id },
-          { $pull: { plants: plant._id } }
+          { $pull: { plants: { _id: _id }}}
         );
         return plant;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     updatePlant: async (parent, { _id, waterFrequency, lastWaterDate }, context) => {
-      if (true) {
+      if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
           { $set: { waterFrequency: waterFrequency, lastWaterDate: lastWaterDate } },
