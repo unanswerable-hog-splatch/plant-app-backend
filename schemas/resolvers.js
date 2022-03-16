@@ -90,7 +90,21 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  },
+    updateFrequency: async (parent, { plantId, waterFrequency }, context) => {
+      if (context.gardener) {
+        const plant = await Plant.findOneAndUpdate(
+          { _id: plantId},
+          { $set: { waterFrequency: waterFrequency }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
+  }
     
   }
 
