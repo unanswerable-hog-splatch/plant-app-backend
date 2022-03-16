@@ -66,13 +66,14 @@ const resolvers = {
           lastFertilizeDate,
           // args
         });
+        return plant
 
-        return await Gardener.findOneAndUpdate(
+        // return await Gardener.findOneAndUpdate(
 
-          { _id: context.gardener._id },
-          // { _id: gardenerId },
-          { $addToSet: { plants: plant._id } }
-        );
+        //   { _id: context.gardener._id },
+        //   // { _id: gardenerId },
+        //   { $addToSet: { plants: plant._id } }
+        // );
 
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -93,8 +94,22 @@ const resolvers = {
     updateFrequency: async (parent, { _id, waterFrequency }) => {
       if (true) {
         const plant = await Plant.findOneAndUpdate(
-          { _id: _id},
+          { _id: _id },
           { $set: { waterFrequency: waterFrequency }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateWaterDate: async (parent, { _id, lastWaterDate }) => {
+      if (true) {
+        const plant = await Plant.findOneAndUpdate(
+          { _id: _id },
+          { $set: { lastWaterDate: lastWaterDate }},
           {
             new: true,
             runValidators: true,
