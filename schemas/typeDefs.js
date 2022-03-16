@@ -51,7 +51,7 @@ type Gardener {
 
 // input plantInput {
 //   gardenerId: ID
-//   plantType: String
+//   species: String
 //   category: String
 //   nickname: String
 //   dateAdded: Int
