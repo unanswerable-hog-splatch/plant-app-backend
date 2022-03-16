@@ -50,7 +50,7 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context ) => {
+    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context) => {
       if (context.gardener) {
         const plant = await Plant.create({
           plantType,
@@ -90,9 +90,36 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  },
-    
+    updateFrequency: async (parent, { _id, waterFrequency }, context) => {
+      if (context.gardener) {
+        const plant = await Plant.findOneAndUpdate(
+          { _id: _id },
+          { $set: { waterFrequency: waterFrequency }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateWaterDate: async (parent, { _id, lastWaterDate }, context) => {
+      if (context.gardener) {
+        const plant = await Plant.findOneAndUpdate(
+          { _id: _id },
+          { $set: { lastWaterDate: lastWaterDate }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   }
-
+    
+}
 
 module.exports = resolvers;
