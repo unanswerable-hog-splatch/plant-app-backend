@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 
 // Plant is only a schema. To be nested in Planters. Task schema to be nested in Plant schema.
 const plantSchema = new Schema({
-    plantType: {
+    species: {
         type: String,
         required: true,
     },
