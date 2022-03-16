@@ -50,8 +50,8 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate } ) => {
-      if (true) {
+    adoptPlant: async (parent, { plantType, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context) => {
+      if (context.gardener) {
         const plant = await Plant.create({
           plantType,
           plantIcon,
@@ -66,20 +66,19 @@ const resolvers = {
           lastFertilizeDate,
           // args
         });
-        return plant
 
-        // return await Gardener.findOneAndUpdate(
+        return await Gardener.findOneAndUpdate(
 
-        //   { _id: context.gardener._id },
-        //   // { _id: gardenerId },
-        //   { $addToSet: { plants: plant._id } }
-        // );
+          { _id: context.gardener._id },
+          // { _id: gardenerId },
+          { $addToSet: { plants: plant._id } }
+        );
 
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    killPlant: async (parent, { plantId }) => {
-      if (true) {
+    killPlant: async (parent, { plantId }, context) => {
+      if (context.gardener) {
         const plant = await Plant.findOneAndDelete({
           _id: plantId,
         });
@@ -91,8 +90,8 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateFrequency: async (parent, { _id, waterFrequency }) => {
-      if (true) {
+    updateFrequency: async (parent, { _id, waterFrequency }, context) => {
+      if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
           { $set: { waterFrequency: waterFrequency }},
@@ -105,8 +104,8 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateWaterDate: async (parent, { _id, lastWaterDate }) => {
-      if (true) {
+    updateWaterDate: async (parent, { _id, lastWaterDate }, context) => {
+      if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
           { $set: { lastWaterDate: lastWaterDate }},
@@ -121,9 +120,6 @@ const resolvers = {
     }
   }
     
-  }
-
-// if (true) should be if (context.gardener)
-// context should be added to args.
+}
 
 module.exports = resolvers;
