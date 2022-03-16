@@ -43,6 +43,7 @@ type Gardener {
     adoptPlant( plantType: String!, plantIcon: String!, category: String!, nickname: String, dateAdded: Int!, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Gardener
     killPlant(_id: ID!): Plant
     updateFrequency(_id: ID!, waterFrequency: Int!): Plant
+    updateWaterDate(_id: ID!, lastWaterDate: Int!): Plant
   }
 
 `;
