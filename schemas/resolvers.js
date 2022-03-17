@@ -34,6 +34,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const gardener = await Gardener.findOne({ email });
+      console.log(gardener)
 
       if (!gardener) {
         throw new AuthenticationError('No gardener with that email/password found in our garden!');
