@@ -20,7 +20,8 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.gardener) {
-        return Gardener.findOne({ _id: context.gardener._id }).populate('plants');
+        console.log(context.gardener)
+        return Gardener.findOne({ _id: context.gardener._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
