@@ -6,6 +6,7 @@ type Gardener {
     name: String!
     email: String!
     password: String!
+    plantCount: Int
     plants: [Plant]
   }
 
