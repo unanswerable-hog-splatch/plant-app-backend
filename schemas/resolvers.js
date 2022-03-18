@@ -50,28 +50,35 @@ const resolvers = {
       return { token, gardener };
     },
 
-    adoptPlant: async (parent, { species, plantIcon, category, nickname, dateAdded, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context) => {
-      if (context.gardener) {
+    adoptPlant: async (parent, { species, plantIcon, category, nickname, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context) => {
+      console.log(context.gardener)
+      if (context.gardener)
+      {
         const plant = await Plant.create({
           species,
           plantIcon,
           category,
           nickname,
-          dateAdded,
           watered,
           fertilized,
           waterFrequency,
           fertilizeFrequency,
           lastWaterDate,
           lastFertilizeDate,
-          // args
         });
+
+        console.log(plant)
 
         return await Gardener.findOneAndUpdate(
 
           { _id: context.gardener._id },
           // { _id: gardenerId },
-          { $addToSet: { plants: plant._id } }
+          { $addToSet: { plants: plant._id } },
+
+          // {
+          //   new: true,
+          //   runValidators: true,
+          // }
         );
 
       }
