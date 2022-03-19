@@ -15,13 +15,13 @@ const resolvers = {
       const params = name ? { name } : {};
       return Plant.find(params).sort({ createdAt: -1 });
     },
-    plant: async (parent, { plantId }) => {
-      return Plant.findOne({ _id: plantId });
+    plant: async (parent, { _id }) => {
+      return Plant.findOne({ _id: _id });
     },
     me: async (parent, args, context) => {
       if (context.gardener) {
         console.log(context.gardener)
-        return Gardener.findOne({ _id: context.gardener._id });
+        return Gardener.findOne({ _id: context.gardener._id }).populate('plants');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -70,18 +70,17 @@ const resolvers = {
 
         console.log(plant)
 
-        return await Gardener.findOneAndUpdate(
-
+        await Gardener.findOneAndUpdate(
           { _id: context.gardener._id },
           // { _id: gardenerId },
           { $addToSet: { plants: plant._id } },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );  
 
-          // {
-          //   new: true,
-          //   runValidators: true,
-          // }
-        );
-
+        return plant
       }
       throw new AuthenticationError('You need to be logged in!');
     },
