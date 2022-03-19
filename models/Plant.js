@@ -22,7 +22,7 @@ const plantSchema = new Schema({
     dateAdded: {
         type: Date,
         required: true,
-        default: new Date().setHours(0,0,0,0),
+        default: (new Date().setHours(0, 0, 0, 0) / 1000),
     },
     watered: {
         type: Boolean,
