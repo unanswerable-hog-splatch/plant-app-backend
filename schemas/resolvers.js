@@ -97,11 +97,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updatePlant: async (parent, { _id, waterFrequency, lastWaterDate }, context) => {
+    updatePlant: async (parent, { _id, waterFrequency, lastWaterDate, watered, fertilized }, context) => {
       if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
-          { $set: { waterFrequency: waterFrequency, lastWaterDate: lastWaterDate } },
+          { $set: { waterFrequency: waterFrequency, lastWaterDate: lastWaterDate, watered: watered, fertilized: fertilized } },
           {
             new: true,
             runValidators: true,

@@ -43,22 +43,8 @@ type Gardener {
     login(email: String!, password: String!): Auth
     adoptPlant( species: String!, plantIcon: String!, category: String!, nickname: String, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Plant
     killPlant(_id: ID!): Plant
-    updatePlant( _id: ID!, waterFrequency: Int, lastWaterDate: Int): Plant
+    updatePlant( _id: ID!, waterFrequency: Int, lastWaterDate: Int, watered: Boolean, fertilized: Boolean): Plant
   }
 `;
-
-// input plantInput {
-//   gardenerId: ID
-//   species: String
-//   category: String
-//   nickname: String
-//   dateAdded: Int
-//   watered: Boolean
-//   fertilized: Boolean
-//   waterFrequency: Int
-//   fertilizeFrequency: Int
-//   lastWaterDate: Int
-//   lastFertilizeDate: Int
-// }
 
 module.exports = typeDefs;
