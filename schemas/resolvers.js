@@ -20,7 +20,6 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.gardener) {
-        console.log(context.gardener)
         return Gardener.findOne({ _id: context.gardener._id }).populate('plants');
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -52,7 +51,6 @@ const resolvers = {
     },
 
     adoptPlant: async (parent, { species, plantIcon, category, nickname, watered, fertilized, waterFrequency, fertilizeFrequency, lastWaterDate, lastFertilizeDate }, context) => {
-      console.log(context.gardener)
       if (context.gardener)
       {
         const plant = await Plant.create({
@@ -68,7 +66,6 @@ const resolvers = {
           lastFertilizeDate,
         });
 
-        console.log(plant)
 
         await Gardener.findOneAndUpdate(
           { _id: context.gardener._id },
