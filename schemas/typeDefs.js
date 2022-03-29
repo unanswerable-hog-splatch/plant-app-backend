@@ -44,7 +44,8 @@ type Gardener {
     login(email: String!, password: String!): Auth
     adoptPlant( species: String!, plantIcon: String!, category: String!, nickname: String, watered: Boolean!, fertilized: Boolean, waterFrequency: Int!, fertilizeFrequency: Int, lastWaterDate: Int!, lastFertilizeDate: Int): Plant
     killPlant(_id: ID!): Plant
-    updatePlant( _id: ID!, waterFrequency: Int, lastWaterDate: Int, watered: Boolean, fertilized: Boolean): Plant
+    updatePlant( _id: ID!, waterFrequency: Int, lastWaterDate: Int, fertilized: Boolean): Plant
+    waterPlant( _id: ID!, lastWaterDate: Int, watered: Boolean, wateredDate: Int): Plant
   }
 `;
 
