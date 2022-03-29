@@ -47,7 +47,7 @@ const plantSchema = new Schema({
     lastFertilizeDate: {
         type: Date,
     },
-    wateredDates: [
+    wateredDate: [
         {
             type: Date,
         },

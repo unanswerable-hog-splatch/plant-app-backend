@@ -112,8 +112,10 @@ const resolvers = {
       if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
-          { $set: { lastWaterDate: lastWaterDate, watered: watered },
-            $addToSet: { wateredDates: { wateredDate }} },
+          {
+            $set: { lastWaterDate: lastWaterDate, watered: watered },
+            $addToSet: { wateredDate: wateredDate }
+          },
           {
             new: true,
             runValidators: true,
