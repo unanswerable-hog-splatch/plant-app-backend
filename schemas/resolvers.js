@@ -98,7 +98,22 @@ const resolvers = {
       if (context.gardener) {
         const plant = await Plant.findOneAndUpdate(
           { _id: _id },
-          { $set: { waterFrequency: waterFrequency, lastWaterDate: lastWaterDate, watered: watered, fertilized: fertilized } },
+          { $set: { waterFrequency: waterFrequency, lastWaterDate: lastWaterDate, watered: watered, fertilized: fertilized }},
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return plant;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    waterPlant: async (parent, { _id, lastWaterDate, watered, wateredDate }, context) => {
+      if (context.gardener) {
+        const plant = await Plant.findOneAndUpdate(
+          { _id: _id },
+          { $set: { lastWaterDate: lastWaterDate, watered: watered },
+            $addToSet: { wateredDates: { wateredDate }} },
           {
             new: true,
             runValidators: true,

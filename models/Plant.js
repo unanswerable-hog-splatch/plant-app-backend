@@ -27,7 +27,7 @@ const plantSchema = new Schema({
     watered: {
         type: Boolean,
         required: true,
-        default: true,
+        default: false,
     },
     fertilized: {
         type: Boolean,
@@ -46,7 +46,12 @@ const plantSchema = new Schema({
     },
     lastFertilizeDate: {
         type: Date,
-    }
+    },
+    wateredDates: [
+        {
+            type: Date,
+        },
+    ],
 });
 
 const Plant = model("Plant", plantSchema);

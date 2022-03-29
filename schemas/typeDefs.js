@@ -23,6 +23,7 @@ type Gardener {
     fertilizeFrequency: Int
     lastWaterDate: Int
     lastFertilizeDate: Int
+    wateredDate: [Int]
   }
 
   type Auth {
